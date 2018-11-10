@@ -8,13 +8,13 @@
 static void signalhandler(int signo){
 	if(signo == SIGINT){
 		char blame[15] = "Blame SIGINT\n";
-		int fd = open("intercepter.txt",O_APPEND);
+		int fd = open("intercepter.txt",O_WRONLY | O_APPEND);
 		write(fd,blame,14);
 		close(fd);
 		exit(0);
 	}
 	if(signo == SIGUSR1){
-		printf("My father's name is %d",getppid());
+		printf("My father's name is %d\n",getppid());
 	}
 }
 int main(){
